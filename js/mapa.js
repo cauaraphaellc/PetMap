@@ -1,3 +1,4 @@
+
 const hoteis = [
     { 
         nome: "Pet Hotel Alpha", 
@@ -29,8 +30,9 @@ const hoteis = [
     },
 ];
 
-// Variável global do mapa
+
 let map;
+
 
 function initMap() {
     if (navigator.geolocation) {
@@ -50,16 +52,13 @@ function initMap() {
 function criarMapa(center) {
     map = L.map('map', { zoomControl: false, attributionControl: false }).setView([center.lat, center.lng], 14);
 
-    L.tileLayer(
-    "https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
-    { maxZoom: 19 }
-    ).addTo(map);
-
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
     L.control.zoom({ position: "bottomleft" }).addTo(map);
 
     adicionarMarcadorUsuario(center);
     adicionarHoteis();
 }
+
 
 function adicionarMarcadorUsuario(center) {
     const userIcon = L.divIcon({
@@ -103,7 +102,7 @@ function exibirHotel(hotel) {
 
         <div class="carousel-container" style="position:relative; overflow:hidden; height:250px; border-radius:10px; margin-bottom:1rem;">
             ${hotel.imagens.map((img, i) => `
-                <img src="img/${img}" class="carousel-img" style="
+                <img src="/img/${img}" class="carousel-img" style="
                     width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;
                     opacity:${i === 0 ? 1 : 0};
                     transition: opacity .4s;
@@ -124,21 +123,21 @@ function exibirHotel(hotel) {
         <div class="social-links">
             <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="social-item">
                 <div class="social-icon whatsapp">
-                    <img src="img/IconWhatsapp.png" alt="WhatsApp">
+                    <img src="/img/IconWhatsapp.png" alt="WhatsApp">
                 </div>
                 <span>11 98765-4321</span>
             </a>
 
             <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-item">
                 <div class="social-icon instagram">
-                    <img src="img/IconInstagram.png" alt="Instagram">
+                    <img src="/img/IconInstagram.png" alt="Instagram">
                 </div>
                 <span>@usuario</span>
             </a>
 
             <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="social-item">
                 <div class="social-icon facebook">
-                    <img src="img/IconFacebook.png" alt="Facebook">
+                    <img src="/img/IconFacebook.png" alt="Facebook">
                 </div>
                 <span>usuario</span>
             </a>
@@ -158,6 +157,7 @@ function iniciarCarrossel() {
         imgs[idx].style.opacity = 1;
     }, 2500);
 }
+
 
 async function obterCoordenadas(endereco) {
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`;
@@ -179,6 +179,7 @@ async function obterCoordenadas(endereco) {
         return null;
     }
 }
+
 
 async function cadastrarHotel(nome, endereco) {
     const coords = await obterCoordenadas(endereco);
@@ -227,6 +228,7 @@ async function carregarHoteisFirebase() {
     }
 }
 
+
 window.onload = async () => {
     initMap();                  // inicializa o mapa
     await carregarHoteisFirebase(); // adiciona hotéis do Firebase
@@ -242,7 +244,7 @@ searchInput.addEventListener("keypress", async (e) => {
         // Tenta encontrar hotel pelo nome
         let hotelEncontrado = hoteis.find(h => h.nome.toLowerCase().includes(query));
 
-        // Se não encontrou, tenta pelo endereço
+        // Se não encontrou tenta pelo endereço
         if (!hotelEncontrado) {
             hotelEncontrado = hoteis.find(h => h.endereco.toLowerCase().includes(query));
         }
@@ -257,8 +259,3 @@ searchInput.addEventListener("keypress", async (e) => {
         }
     }
 });
-
-
-
-
-
