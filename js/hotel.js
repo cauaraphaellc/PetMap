@@ -31,19 +31,56 @@ const hoteis = [
 
 let map;
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
+    // Inicializa mapa
+    initMap();
+
+    // Logout
     const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", async () => {
-            try {
-                await signOut(auth);
-                window.location.href = "login.html";
-            } catch (error) {
-                console.error("Erro ao deslogar:", error);
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            // Usuário logado, exibe botão
+            if (logoutBtn) logoutBtn.style.display = "inline-block";
+
+            // Preenche campos automaticamente
+            const docRef = doc(db, "hoteis", user.uid);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const dados = docSnap.data();
+                const nome = document.getElementById("nome");
+                const endereco = document.getElementById("endereco");
+                const pets = document.getElementById("pets");
+                const email = document.getElementById("email");
+                const telefone = document.getElementById("telefone");
+
+                if (nome) nome.value = dados.nome || "";
+                if (endereco) endereco.value = dados.endereco || "";
+                if (pets) pets.value = dados.pets || "";
+                if (email) email.value = dados.email || "";
+                if (telefone) telefone.value = dados.telefone || "";
             }
-        });
-    }
-};
+
+            // Adiciona listener do logout
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", async () => {
+                    try {
+                        await signOut(auth);
+                        window.location.href = "login.html";
+                    } catch (error) {
+                        console.error("Erro ao deslogar:", error);
+                    }
+                });
+            }
+        } else {
+            // Usuário não logado, esconde botão
+            if (logoutBtn) logoutBtn.style.display = "none";
+        }
+    });
+});
+
+// ----------------------- MAPA -----------------------
 function initMap() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -60,10 +97,7 @@ function criarMapa(center) {
     map = L.map('map', { zoomControl: false, attributionControl: false })
         .setView([center.lat, center.lng], 14);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19
-    }).addTo(map);
-
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
     L.control.zoom({ position: "bottomleft" }).addTo(map);
 
     adicionarMarcadorUsuario(center);
@@ -100,6 +134,7 @@ function adicionarMarcadorHotel(hotel) {
         .on("click", () => exibirHotel(hotel));
 }
 
+// ----------------------- HOTEL INFO -----------------------
 function exibirHotel(hotel) {
     const box = document.getElementById("hotel-info");
     if (!box) return;
@@ -138,18 +173,15 @@ function iniciarCarrossel() {
     }, 2500);
 }
 
+// ----------------------- GEO / CADASTRO -----------------------
 async function obterCoordenadas(endereco) {
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`;
-
     try {
         const response = await fetch(url, { headers: { "User-Agent": "PetMap/1.0" }});
         const data = await response.json();
         if (data.length === 0) return null;
 
-        return {
-            lat: parseFloat(data[0].lat),
-            lng: parseFloat(data[0].lon)
-        };
+        return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
     } catch {
         return null;
     }
@@ -171,41 +203,3 @@ async function cadastrarHotel(nome, endereco) {
     hoteis.push(novoHotel);
     adicionarMarcadorHotel(novoHotel);
 }
-
-// Preencher campos automaticamente com dados do Firebase
-onAuthStateChanged(auth, async (user) => {
-    if (!user) return;
-
-    const docRef = doc(db, "hoteis", user.uid);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-        const dados = docSnap.data();
-
-        const nome = document.getElementById("nome");
-        const endereco = document.getElementById("endereco");
-        const pets = document.getElementById("pets");
-        const email = document.getElementById("email");
-        const telefone = document.getElementById("telefone");
-
-        if (nome) nome.value = dados.nome || "";
-        if (endereco) endereco.value = dados.endereco || "";
-        if (pets) pets.value = dados.pets || "";
-        if (email) email.value = dados.email || "";
-        if (telefone) telefone.value = dados.telefone || "";
-    }
-});
-
-// Logout
-const logoutBtn = document.getElementById("logoutBtn");
-if (logoutBtn) {
-    logoutBtn.addEventListener("click", async () => {
-        try {
-            await signOut(auth);
-            window.location.href = "login.html";
-        } catch (error) {
-            console.error("Erro ao deslogar:", error);
-        }
-    });
-}
-
