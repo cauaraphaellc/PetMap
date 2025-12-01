@@ -12,7 +12,6 @@ body {
     color: #4D2C0F;
 }
 
-/* Header */
 header {
     background-color: #FFFBF0;
     border-bottom: 1px solid rgba(120, 53, 15, 0.2);
@@ -101,7 +100,6 @@ nav a:hover::after {
     border-radius: 4px;
 }
 
-/* Tips Section */
 .tips-section {
     padding: 2rem 0;
 }
@@ -162,7 +160,6 @@ nav a:hover::after {
     line-height: 1.4;
 }
 
-/* Footer */
 footer {
     background-color: #78350F;
     color: #FFFBF0;
