@@ -102,7 +102,7 @@ function exibirHotel(hotel) {
 
         <div class="carousel-container" style="position:relative; overflow:hidden; height:250px; border-radius:10px; margin-bottom:1rem;">
             ${hotel.imagens.map((img, i) => `
-                <img src="/img/${img}" class="carousel-img" style="
+                <img src="img/${img}" class="carousel-img" style="
                     width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;
                     opacity:${i === 0 ? 1 : 0};
                     transition: opacity .4s;
@@ -123,21 +123,21 @@ function exibirHotel(hotel) {
         <div class="social-links">
             <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="social-item">
                 <div class="social-icon whatsapp">
-                    <img src="/img/IconWhatsapp.png" alt="WhatsApp">
+                    <img src="img/IconWhatsapp.png" alt="WhatsApp">
                 </div>
                 <span>11 98765-4321</span>
             </a>
 
             <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-item">
                 <div class="social-icon instagram">
-                    <img src="/img/IconInstagram.png" alt="Instagram">
+                    <img src="img/IconInstagram.png" alt="Instagram">
                 </div>
                 <span>@usuario</span>
             </a>
 
             <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="social-item">
                 <div class="social-icon facebook">
-                    <img src="/img/IconFacebook.png" alt="Facebook">
+                    <img src="img/IconFacebook.png" alt="Facebook">
                 </div>
                 <span>usuario</span>
             </a>
@@ -256,6 +256,7 @@ searchInput.addEventListener("keypress", async (e) => {
         }
     }
 });
+
 
 
 
