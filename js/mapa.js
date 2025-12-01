@@ -110,15 +110,15 @@ function exibirHotel(hotel) {
         </div>
         <div class="social-links">
             <a href="https://wa.me/${hotel.whatsapp}" target="_blank" class="social-item">
-                <div class="social-icon whatsapp"><img src="/img/IconWhatsapp.png" alt="WhatsApp"></div>
+                <div class="social-icon whatsapp"><img src="img/IconWhatsapp.png" alt="WhatsApp"></div>
                 <span>${hotel.telefone}</span>
             </a>
             <a href="https://instagram.com/${hotel.instagram}" target="_blank" class="social-item">
-                <div class="social-icon instagram"><img src="/img/IconInstagram.png" alt="Instagram"></div>
+                <div class="social-icon instagram"><img src="img/IconInstagram.png" alt="Instagram"></div>
                 <span>@${hotel.instagram}</span>
             </a>
             <a href="https://facebook.com/${hotel.facebook}" target="_blank" class="social-item">
-                <div class="social-icon facebook"><img src="/img/IconFacebook.png" alt="Facebook"></div>
+                <div class="social-icon facebook"><img src="img/IconFacebook.png" alt="Facebook"></div>
                 <span>${hotel.facebook}</span>
             </a>
         </div>
@@ -210,4 +210,5 @@ onAuthStateChanged(auth,async (user)=>{
         if(telefone) telefone.value=dados.telefone||"";
     }
 });
+
 
