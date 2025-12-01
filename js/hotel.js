@@ -29,7 +29,7 @@ const hoteis = [
 // Variável global do mapa
 let map;
 
-// ------------ FUNÇÃO PRINCIPAL - CHAMADA AO CARREGAR A PÁGINA ------------
+
 function initMap() {
     // Tenta pegar localização do usuário
     if (navigator.geolocation) {
@@ -57,7 +57,6 @@ function initMap() {
     }
 }
 
-// ------------ CRIAÇÃO DO MAPA ------------
 function criarMapa(center) {
     // Cria o mapa com estilo clean e controles minimalistas
     map = L.map('map', {
@@ -79,7 +78,6 @@ function criarMapa(center) {
     adicionarHoteis();
 }
 
-// ------------ MARCADOR DO USUÁRIO (AZUL PREMIUM) ------------
 function adicionarMarcadorUsuario(center) {
     const userIcon = L.divIcon({
         className: "user-marker",
@@ -104,7 +102,6 @@ function adicionarMarcadorUsuario(center) {
         .addTo(map);
 }
 
-// ------------ MARCADORES DOS HOTÉIS (VERMELHO PREMIUM) ------------
 function adicionarHoteis() {
     hoteis.forEach(hotel => adicionarMarcadorHotel(hotel));
 }
@@ -132,7 +129,6 @@ function adicionarMarcadorHotel(hotel) {
         .on("click", () => exibirHotel(hotel));
 }
 
-// ------------ EXIBE INFORMAÇÕES DO HOTEL ABAIXO DO MAPA ------------
 function exibirHotel(hotel) {
     const box = document.getElementById("hotel-info");
     box.style.display = "block";
@@ -160,7 +156,6 @@ function exibirHotel(hotel) {
     iniciarCarrossel();
 }
 
-// ------------ CARROSSEL AUTOMÁTICO SIMPLES ------------
 function iniciarCarrossel() {
     const imgs = document.querySelectorAll(".carousel-img");
     let idx = 0;
@@ -174,7 +169,6 @@ function iniciarCarrossel() {
     }, 2500);
 }
 
-// ------------ OBTER COORDENADAS VIA API NOMINATIM ------------
 async function obterCoordenadas(endereco) {
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`;
 
@@ -199,7 +193,6 @@ async function obterCoordenadas(endereco) {
     }
 }
 
-// ------------ CADASTRAR HOTEL NOVO ------------
 async function cadastrarHotel(nome, endereco) {
     const coords = await obterCoordenadas(endereco);
 
@@ -247,3 +240,4 @@ onAuthStateChanged(auth, async (user) => {
         }
     }
 });
+
