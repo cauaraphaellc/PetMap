@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seu Hotel - PetMap</title>
     <meta name="description" content="Gerencie as informações do seu hotel pet-friendly no PetMap">
-    <link rel="stylesheet" href="/css/styledefault.css">
-    <link rel="stylesheet" href="/css/stylehotel.css">
-    <script src="/js/hotel.js"></script>
+    <link rel="stylesheet" href="css/styledefault.css">
+    <link rel="stylesheet" href="css/stylehotel.css">
+    <script src="js/hotel.js"></script>
 </head>
 <body>
 
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">
-                <img src="/img/Logo750.png" alt="Logo PetMap" class="logo-img">
+                <img src="img/Logo750.png" alt="Logo PetMap" class="logo-img">
                 <span class="logo-text">PetMap</span>
             </a>
             <nav>
@@ -28,28 +28,22 @@
 
     <main class="hotel-main">
         <div class="hotel-container">
-            <!-- Title Section -->
             <div class="hotel-header">
                 <h1>SEU HOTEL</h1>
                 <p>Ainda não cadastrou seu hotel? <a href="cadastrar.html" class="link-cadastro">Clique aqui</a> e cadastre-o!</p>
             </div>
 
-                <!-- Hotel Card -->
                 <div class="hotel-card">
                     <h2 class="hotel-name">Nome do Hotel</h2>
 
-                    <!-- Image Carousel -->
                     <div class="carousel">
                         <div class="carousel-inner">
-                            <!-- Slides will be dynamically added by JavaScript -->
                         </div>
 
-                        <!-- Navigation Arrows -->
                         <button class="nav-btn prev-btn" aria-label="Imagem anterior">❮</button>
                         <button class="nav-btn next-btn" aria-label="Próxima imagem">❯</button>
                     </div>
 
-                <!-- Rating -->
                 <div class="hotel-rating">
                     <span class="star">★</span>
                     <span class="star">★</span>
@@ -58,14 +52,12 @@
                     <span class="star">★</span>
                 </div>
 
-                <!-- Location -->
                 <div class="hotel-location">
-                    <img src="/placeholder.svg" alt="Localização" class="location-icon">
+                    <img src="placeholder.svg" alt="Localização" class="location-icon">
                     <span>Local - Local</span>
                 </div>
             </div>
 
-            <!-- Edit Form -->
             <div class="hotel-form">
                 <h3>Editar Informações do Hotel</h3>
 
@@ -95,42 +87,38 @@
                         <input type="tel" id="telefone" placeholder="Telefone">
                     </div>
 
-                    <!-- Social Media Links -->
                     <div class="social-links">
                         <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="social-item">
                             <div class="social-icon whatsapp">
-                                <img src="/img/IconWhatsapp.png" alt="WhatsApp">
+                                <img src="img/IconWhatsapp.png" alt="WhatsApp">
                             </div>
                             <span>11 98765-4321</span>
                         </a>
 
                         <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-item">
                             <div class="social-icon instagram">
-                                <img src="/img/IconInstagram.png" alt="Instagram">
+                                <img src="img/IconInstagram.png" alt="Instagram">
                             </div>
                             <span>@usuario</span>
                         </a>
 
                         <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="social-item">
                             <div class="social-icon facebook">
-                                <img src="/img/IconFacebook.png" alt="Facebook">
+                                <img src="img/IconFacebook.png" alt="Facebook">
                             </div>
                             <span>usuario</span>
                         </a>
                     </div>
 
-                    <!-- Additional Images Upload -->
                     <div class="additional-images">
                         <p>Adicione novas imagens aqui</p>
                         <input type="file" id="additional-upload" multiple accept="image/*" class="file-input">
                         <label for="additional-upload" class="upload-btn">Escolher Imagens</label>
 
-                        <!-- Preview das imagens -->
                         <div class="preview-grid" id="preview-grid"></div>
                     </div>
 
 
-                    <!-- Submit Button -->
                     <button type="submit" class="submit-btn">Enviar Alterações</button>
 
                     <button type="button" id="logout-btn" class="logout-btn" style="display:none;">Sair</button>
@@ -157,4 +145,5 @@
 
 
 </body>
+
 </html>
