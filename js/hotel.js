@@ -31,8 +31,19 @@ const hoteis = [
 
 let map;
 
-window.onload = initMap;
-
+window.onload = () => {
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", async () => {
+            try {
+                await signOut(auth);
+                window.location.href = "login.html";
+            } catch (error) {
+                console.error("Erro ao deslogar:", error);
+            }
+        });
+    }
+};
 function initMap() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -197,3 +208,4 @@ if (logoutBtn) {
         }
     });
 }
+
