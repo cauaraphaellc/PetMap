@@ -50,9 +50,10 @@ function initMap() {
 function criarMapa(center) {
     map = L.map('map', { zoomControl: false, attributionControl: false }).setView([center.lat, center.lng], 14);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    }).addTo(map);
+    L.tileLayer(
+    "https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+    { maxZoom: 19 }
+    ).addTo(map);
 
     L.control.zoom({ position: "bottomleft" }).addTo(map);
 
@@ -256,6 +257,7 @@ searchInput.addEventListener("keypress", async (e) => {
         }
     }
 });
+
 
 
 
