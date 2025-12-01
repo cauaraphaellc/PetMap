@@ -91,6 +91,7 @@ function exibirHotel(hotel) {
     box.style.display = "block";
     const estrelas = "⭐".repeat(hotel.rating || 5);
     box.innerHTML = `
+        <h1 style="color:white; margin-bottom: .5rem;">Entre em contato: </h1>
         <h2 style="color:white; margin-bottom: .5rem;">${hotel.nome}</h2>
         <p style="opacity:.85;margin-bottom:1rem;">📍 ${hotel.endereco}</p>
         <div class="carousel-container" style="position:relative;overflow:hidden;height:250px;border-radius:10px;margin-bottom:1rem;">
@@ -128,3 +129,4 @@ async function cadastrarHotel(nome,endereco) {
     hoteis.push(novoHotel);
     adicionarMarcadorHotel(novoHotel);
 }
+
